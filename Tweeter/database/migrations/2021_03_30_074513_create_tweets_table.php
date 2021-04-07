@@ -16,6 +16,7 @@ class CreateTweetsTable extends Migration
         Schema::create('tweets', function (Blueprint $table) {
             $table->id();
             $table->text('content');
+            //cle etrangere grace a la methode constrained() laravel sera que c est une cle etrangere
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

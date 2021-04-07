@@ -62,7 +62,8 @@ class User extends Authenticatable
 
     public function tweets()
     {
-        //methode hasMany() car il y aura plusieur tweet et on decide de les afficher par ordre de creation 
+        //methode hasMany() car il y aura plusieur tweet et on decide de les afficher par ordre de creation
+        //+ recent au + ancien 
         return $this->hasMany(Tweet::class)->orderBy('created_at','DESC');
     }
 }

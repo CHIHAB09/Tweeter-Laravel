@@ -17,4 +17,18 @@ class TweetController extends Controller
             'tweets' => $tweets
         ]);
     }
+
+ 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'content' => ['required','max:280'],
+            'user_id' => ['exists:users,id']
+        ]);
+    
+    
+    
+    
+    }
+
 }

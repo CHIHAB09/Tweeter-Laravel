@@ -16,15 +16,16 @@
                     :src="tweet.user.profile_photo_url">
                     <div class="flex flex-col w-2/3">
                     <div>
-                        <a class="text-sm text-gray-900 font-bold hover:text-blue-400" :href="`/profile/${tweet.user.name}`">
+                        <a class="text-sm text-gray-900 font-bold hover:text-blue-400"
+                        :href="`/profile/${tweet.user.name}`">
                             {{ tweet.user.name }}
                         </a>
                         <span class="font-thin text-gray-400">· le {{ tweet.created_at }}</span>
                     </div>
                         <div class="text-sm text-gray-400 font-thin">{{ tweet.content }}</div>
                     </div>
-                        <!--v-if="tweet.user.id != $page.user.id" -->
-               <div class="w-40">
+                    <!--  v-if="tweet.user.id != $page.user.id" -->    
+            <div class="w-40">
                         <inertia-link v-if="!tweet.user.is_followed" as="button" method="POST" :href="`/follows/${tweet.user.id}`"
                             class="bg-white text-blue-500 cursor-pointer px-5 py-2
                             hover:text-white border border-blue-500 leading-tight hover:bg-blue-500

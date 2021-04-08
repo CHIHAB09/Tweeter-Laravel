@@ -6,12 +6,12 @@
                         border-gray-200 w-full p-2 font-semibold resize-none focus:outline-none"></textarea>
                         <span class="my-5 text-red-500">
 
-                           
 
                         </span>
                         <div class="flex items-center space-x-4 justify-end mt-3">
-                            <p class="text-sm text-gray-400 font-thin"> 280 caractéres restants</p>
-                            <button-vue class="bg-blue-500 hover:bg-blue-800 
+                            <p :class="{'text-red-500': remainingChars < 0}" class="text-sm text-gray-400 font-thin">{{ remainingChars }} caractères restants</p>
+                            <!--On dit au boutton d etre invisible grace a canSubmit permet de verifier si raimaingChars est egal ou sup a 0 ou alors this content est present -->
+                            <button-vue :disabled="!canSubmit" class="bg-blue-500 hover:bg-blue-800 
                             rounded-full font-extrabold">Tweet</button-vue>
                         </div>
                     </form>
@@ -32,15 +32,32 @@
 
     data(){
         return {
-            content:''
+            content:'',
+            limit:280
         }
     },
-        methods: {
-            tweetStore(){
-                this.$inertia.post('tweets', {content:this.content}, {preserveState: false})
+    
+    methods: {
+        tweetStore(){
+            this.$inertia.post('tweets', {content: this.content}, {preserveState: false})
             }
-        }  
+        },
+    computed: {
+        remainingChars(){
+            return this.limit - this.content.length
+        },
+        canSubmit(){
+            return this.content.length && this.remainingChars >= 0;
+        }
+    }
 
     }
     
 </script>
+
+<style scoped>
+    button:disabled {
+        opacity: 50%;
+        cursor: not-allowed;
+    }
+</style>

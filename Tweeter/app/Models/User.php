@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Tweet;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -66,4 +67,27 @@ class User extends Authenticatable
         //+ recent au + ancien 
         return $this->hasMany(Tweet::class)->orderBy('created_at','DESC');
     }
+
+
+    public function followings ()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'followings',
+            'follower_id',
+            'following_id'
+
+        );
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'followings',
+            'following_id',
+            'follower_id'
+        );
+    }
+
 }

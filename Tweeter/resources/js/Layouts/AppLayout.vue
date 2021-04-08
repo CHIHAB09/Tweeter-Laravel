@@ -23,6 +23,9 @@
                                 <jet-nav-link :href="route('tweets.index')" :active="route().current('tweets.index')">
                                     Tweets
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('tweets.followings')" :active="route().current('tweets.followings')">
+                                    Mes abonnements
+                                </jet-nav-link>
                             </div>
                         </div>
 
